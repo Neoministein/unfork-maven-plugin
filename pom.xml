@@ -2,12 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.neo.util.tools</groupId>
+    <groupId>com.neoministein.tools</groupId>
     <artifactId>unfork-maven-plugin</artifactId>
     <version>1.0.0</version>
-
-    <name>Neo Util Tools UnFork Maven Plugin</name>
     <packaging>maven-plugin</packaging>
+
+    <name>UnFork Maven Plugin</name>
+    <description>An maven plugin to easily change dependency source-files without needing to fork the project</description>
+    <url>https://github.com/Neoministein/unfork-maven-plugin</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -109,4 +111,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <scm>
+        <connection>scm:git:git://github.com/neoministein/unfork-maven-plugin.git</connection>
+        <developerConnection>scm:git:ssh://github.com:neoministein/unfork-maven-plugin.git</developerConnection>
+        <url>https://github.com/neoministein/unfork-maven-plugin/tree/master</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/octocat/hello-world</url>
+        </repository>
+    </distributionManagement>
 </project>

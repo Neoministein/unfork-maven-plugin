@@ -1,4 +1,4 @@
-package com.neo.util.tools.unfork;
+package com.neoministein.tools.unfork;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;

@@ -1,4 +1,4 @@
-package com.neo.util.tools.unfork;
+package com.neoministein.tools.unfork;
 
 import org.apache.maven.RepositoryUtils;
 import org.apache.maven.artifact.Artifact;
