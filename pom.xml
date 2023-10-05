@@ -27,8 +27,45 @@
         <maven.tools.version>3.9.0</maven.tools.version>
         <maven.compiler.version>3.11.0</maven.compiler.version>
         <maven.source.version>3.3.0</maven.source.version>
+        <maven.javadoc.version>2.9.1</maven.javadoc.version>
         <maven.plugin.version>3.8.2</maven.plugin.version>
+        <maven.gpg.plugin>1.5</maven.gpg.plugin>
+        <!-- Release -->
+        <org.sonatype.plugins.version>1.6.13</org.sonatype.plugins.version>
     </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/neoministein/unfork-maven-plugin.git</connection>
+        <developerConnection>scm:git:ssh://github.com:neoministein/unfork-maven-plugin.git</developerConnection>
+        <url>https://github.com/neoministein/unfork-maven-plugin/tree/master</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Sandro Tartoni</name>
+            <email>contact@neoministein.com</email>
+            <organization>Neoministein</organization>
+            <organizationUrl>https://github.com/Neoministein/</organizationUrl>
+        </developer>
+    </developers>
 
     <dependencies>
         <!-- Utils -->
@@ -87,6 +124,7 @@
 
     <build>
         <plugins>
+            <!-- Specify compilation target and compiler arguments -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -96,6 +134,7 @@
                     <target>11</target>
                 </configuration>
             </plugin>
+            <!-- Additional release info -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -110,6 +149,32 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven.gpg.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Release to maven central -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${org.sonatype.plugins.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -122,17 +187,5 @@
         </pluginManagement>
     </build>
 
-    <scm>
-        <connection>scm:git:git://github.com/neoministein/unfork-maven-plugin.git</connection>
-        <developerConnection>scm:git:ssh://github.com:neoministein/unfork-maven-plugin.git</developerConnection>
-        <url>https://github.com/neoministein/unfork-maven-plugin/tree/master</url>
-    </scm>
 
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/neoministein/unfork-maven-plugin</url>
-        </repository>
-    </distributionManagement>
 </project>
