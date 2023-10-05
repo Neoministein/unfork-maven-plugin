@@ -27,7 +27,7 @@ Add the following bit to the build section of the UnForked `pom.xml`.
 <build>
     <plugins>
         <plugin>
-            <groupId>com.neo.util.tools</groupId>
+            <groupId>com.neoministein.tools</groupId>
             <artifactId>unfork-maven-plugin</artifactId>
             <version>1.0.0</version>
             <executions>
